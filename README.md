@@ -62,9 +62,9 @@ pyber_summary_df
 ```
 |               | Total Rides   | Total Drivers  |     Total Fare| Average Fare Per Ride   | Average Fare Per Ride  |
 | ------------- |:-------------:| --------------:|--------------:|:-----------------------:| ----------------------:|
-| Rural         | 125           | 78             | $4,327.93     | right-aligned           | $1600                  |
-| Suburban      | 625           | 490            | $19,356.33    | centered                |   $12                  |
-| Urban         | 1,625         | 2405           | $39,854.38    | are neat                |    $1                  |
+| Rural         | 125           | 78             | $4,327.93     | $34.62                  | $55.4                  |
+| Suburban      | 625           | 490            | $19,356.33    | $30.97                  | $39.50                 |
+| Urban         | 1,625         | 2405           | $39,854.38    | $24.53                  | $16.57                 |
 
 
 
