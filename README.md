@@ -10,6 +10,66 @@ There are 490 drivers currently operating in the suburban area with an average f
 ### Urban
 There are 2,405 drivers currently operating in the urban area with an average fare per driver at $16.57. A volume of 1,625 rides within a quarter generated total revenue of $39,854.38 with an average revenue per ride of $24.53. The average fare per driver and average revenue per ride is lowest in urban areas however total revenue, total rides and number of drivers is the highest. High population density may be a major factor for these results and distance in urban areas are also shorter compared to other places. 
 
+```python
+
+# Add Matplotlib inline magic command
+%matplotlib inline
+# Dependencies and Setup
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# File to Load (Remember to change these)
+city_data_to_load = "C:/Users/ritwi/OneDrive/Desktop/Classwork/Weekly Challenges/Challenge 5/Resources/city_data.csv"
+ride_data_to_load = "C:/Users/ritwi/OneDrive/Desktop/Classwork/Weekly Challenges/Challenge 5/Resources/ride_data.csv"
+
+# Read the City and Ride Data
+city_data_df = pd.read_csv(city_data_to_load)
+ride_data_df = pd.read_csv(ride_data_to_load)
+
+# Combine the data into a single dataset
+pyber_data_df = pd.merge(ride_data_df, city_data_df, how="left", on=["city", "city"])
+
+# Display the data table for preview
+pyber_data_df.head()
+
+#  1. Get the total rides for each city type
+df1=pyber_data_df.groupby(["type"]).count()[["ride_id"]]
+df1_clos = ["Total Rides"]
+df1.columns = df1_clos
+df1
+# 2. Get the total drivers for each city type
+df2=city_data_df.groupby(["type"]).sum()[["driver_count"]]
+df2_clos = ["Total Drivers"]
+df2.columns = df2_clos
+df2
+#  3. Get the total amount of fares for each city type
+df3=pyber_data_df.groupby(["type"]).sum()[["fare"]]
+df3_clos = ["Total fares"]
+df3.columns = df3_clos
+df3
+#  4. Get the average fare per ride for each city type. 
+df4=pyber_data_df.groupby(["type"]).mean()[["fare"]]
+df4_clos = ["Average Fare per Ride"]
+df4.columns = df4_clos
+df4
+# 5. Get the average fare per driver for each city type.
+dfs=pyber_data_df.groupby(["type"]).sum()["fare"]/city_data_df.groupby(["type"]).sum()["driver_count"]
+df5 = dfs.to_frame(name='Avergae Fare per Driver')
+df5
+#  6. Create a PyBer summary DataFrame.
+pyber_summary_df = pd.concat([df1,df2,df3,df4,df5], axis =1)
+pyber_summary_df
+#  7. Cleaning up the DataFrame. Delete the index name
+pyber_summary_df.index.name = None
+#  8. Format the columns.
+
+pyber_summary_df["Total fares"] = pyber_summary_df["Total fares"].map("${:,.1f}".format)
+pyber_summary_df["Average Fare per Ride"] = pyber_summary_df["Average Fare per Ride"].map("${:,.1f}".format)
+pyber_summary_df["Avergae Fare per Driver"] = pyber_summary_df["Avergae Fare per Driver"].map("${:,.1f}".format)
+pyber_summary_df
+
+```
+
 ## Summary
 Based on the results, we can make 3 business recommendations to the CEO for addressing the disparities among the city types.
 - To increase total revenue in suburban and rural areas, Total number of rides need to increase however this is not feasible given the population density in these areas. We can recommend PyBer to expand portfolio in these areas by having drivers provide other services like food delivery & grocery delivery.
