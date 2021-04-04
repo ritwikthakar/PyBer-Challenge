@@ -60,11 +60,16 @@ pyber_summary_df["Avergae Fare per Driver"] = pyber_summary_df["Avergae Fare per
 pyber_summary_df
 
 ```
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+|               | Total Rides   | Total Drivers  |     Total Fare| Average Fare Per Ride   | Average Fare Per Ride  |
+| ------------- |:-------------:| --------------:|--------------:|:-----------------------:| ----------------------:|
+| Rural         | 125           | 78             | $4,327.93     | right-aligned           | $1600                  |
+| Suburban      | 625           | 490            | $19,356.33    | centered                |   $12                  |
+| Urban         | 1,625         | 2405           | $39,854.38    | are neat                |    $1                  |
+
+
+
+
+
 
 
 ## Results
